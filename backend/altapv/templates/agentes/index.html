@@ -1,0 +1,9 @@
+{% if todos %}
+    <ul>
+    {% for poll in todos %}
+        <li><a href="/agentes/{{ poll.id }}/">{{ poll.nombre }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No hay agentes.</p>
+{% endif %}
