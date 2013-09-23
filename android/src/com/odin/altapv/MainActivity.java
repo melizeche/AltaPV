@@ -64,6 +64,8 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
 	}
+	
+	
 	Thread thread = new Thread(new Runnable(){
 	    @Override
 	    public void run() {
@@ -84,6 +86,7 @@ public class MainActivity extends Activity {
 	    	        @SuppressWarnings("unused")
 					HttpResponse response = httpclient.execute(httppost);
 	    	        System.out.println("Funciono");
+	    	        bEnviar.setEnabled(true);
 	    	        //Toast.makeText(this, "Enviado Correctamente", Toast.LENGTH_SHORT).show();
 	    	        
 	    	    } catch (ClientProtocolException e) {
@@ -107,6 +110,7 @@ public class MainActivity extends Activity {
 		//startActivity(i);
 		// Create a new HttpClient and Post Header
 		nombre =  tNombre.getText().toString();
+		bEnviar.setEnabled(false);
 		thread.start(); 
 		
 	    
