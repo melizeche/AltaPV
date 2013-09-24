@@ -83,9 +83,10 @@ public class MainActivity extends Activity {
 
 	    	        // Execute HTTP Post Request
 	    	        System.out.println("Antes");
-	    	        @SuppressWarnings("unused")
+	    	       
 					HttpResponse response = httpclient.execute(httppost);
 	    	        System.out.println("Funciono");
+	    	        System.out.println(response.toString());
 	    	        bEnviar.setEnabled(true);
 	    	        //Toast.makeText(this, "Enviado Correctamente", Toast.LENGTH_SHORT).show();
 	    	        

@@ -23,7 +23,7 @@ class PuntoForm(forms.Form):
 		('2','Comedor'),
 		('3','Otro'),
 	)
-	agente 		= forms.IntegerField() 
+	agente 		= forms.CharField(max_length=20)
 	nombre 		= forms.CharField(max_length=35)
 	direccion	= forms.CharField(max_length=60)
 	actividad	= forms.ChoiceField(choices=TIPO)
@@ -73,7 +73,7 @@ def puntoadd(request):
 	if request.method == 'POST': # If the form has been submitted...
 		form = PuntoForm(request.POST) # A form bound to the POST data
 		if form.is_valid(): # All validation rules pass    
-			ag = Agente.objects.get(id=request.POST['agente'])
+			ag = Agente.objects.get(numero=request.POST['agente'])
 			nom =  request.POST['nombre']
 			num = request.POST['telefono']
 			dire = request.POST['direccion']
