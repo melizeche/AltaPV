@@ -8,9 +8,121 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PuntoAdd" >
 
-    <TextView
+    <EditText
+        android:id="@+id/textNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="Nombre" />
+
+    <EditText
+        android:id="@+id/textNumero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textNombre"
+        android:layout_marginLeft="19dp"
+        android:ems="10"
+        android:hint="Número" />
+
+    <EditText
+        android:id="@+id/textDireccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textNumero"
+        android:layout_below="@+id/textNumero"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Dirección" />
+
+    <EditText
+        android:id="@+id/textBarrio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textDireccion"
+        android:layout_below="@+id/textDireccion"
+        android:ems="10"
+        android:hint="Barrio" />
+
+    <EditText
+        android:id="@+id/textCiudad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textBarrio"
+        android:layout_below="@+id/textBarrio"
+        android:ems="10"
+        android:hint="Ciudad" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/textRuc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textCiudad"
+        android:layout_below="@+id/textPropietario"
+        android:ems="10"
+        android:hint="RUC o Cédula" />
+
+    <EditText
+        android:id="@+id/textPropietario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textRuc"
+        android:layout_below="@+id/textCiudad"
+        android:ems="10"
+        android:hint="Propietario" />
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textRuc"
+        android:layout_below="@+id/textRuc"
+        android:layout_marginLeft="14dp"
+        android:text="No disponible"
+        android:textSize="20dip" />
+
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textRuc"
+        android:layout_below="@+id/TextView02"
+        android:layout_marginLeft="14dp"
+        android:text="No disponible"
+        android:textSize="20dip" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textNumero"
+        android:layout_below="@+id/textNumero"
+        android:entries="@array/tipos" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/spinner1"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/spinner1"
+        android:text="(Tipo de local)" />
+
+    <Button
+        android:id="@+id/bEnviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textRuc"
+        android:layout_alignTop="@+id/TextView02"
+        android:onClick="clickEnviar"
+        android:text="Enviar" />
 
 </RelativeLayout>

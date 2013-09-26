@@ -72,6 +72,7 @@ def puntoadd(request):
 	
 	if request.method == 'POST': # If the form has been submitted...
 		form = PuntoForm(request.POST) # A form bound to the POST data
+		print request.POST
 		if form.is_valid(): # All validation rules pass    
 			ag = Agente.objects.get(numero=request.POST['agente'])
 			nom =  request.POST['nombre']
@@ -91,9 +92,13 @@ def puntoadd(request):
 				p = Punto(agente=ag, nombre=nom, direccion=dire, telefono=num, actividad=acti, ciudad=ciud, propietario=prop, latitud=lat, longitud=log, ruc=ru, barrio=bar)
 				p.save()
 			#if request.
+			print "valido"
 			return HttpResponse('valido <br>' + nom + ' = ' + num) 
+			
 		else:
+			print 'no valido'
 			return HttpResponse('no valido')
+
 	else:
 		form = PuntoForm()
 		return render_to_response('agentes/add.html', {'form': form})	

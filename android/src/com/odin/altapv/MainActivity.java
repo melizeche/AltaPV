@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
 	    public void run() {
 	        try {
 	        	HttpClient httpclient = new DefaultHttpClient();
-	    	    HttpPost httppost = new HttpPost("http://192.168.1.118:8000/agentes/add");
+	    	    HttpPost httppost = new HttpPost("http://192.168.1.113:8000/agentes/add");
 
 	    	    try {
 	    	        // Add your data
