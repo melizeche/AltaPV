@@ -7,13 +7,16 @@
     <string name="title_activity_punto_add">PuntoAdd</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_inicio">Inicio</string>
-    
-     <string-array name="tipos">
+
+    <string-array name="tipos">
         <item>Despensa</item>
         <item>Bodega</item>
         <item>Comedor</item>
         <item>Otro</item>
-        
     </string-array>
+
+    <string name="title_activity_splash">Splash</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>

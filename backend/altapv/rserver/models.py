@@ -16,6 +16,7 @@ class Punto(models.Model):
 		('2','Comedor'),
 		('3','Otro'),
 	)
+	id 			= models.IntegerField(primary_key=True)
 	agente 		= models.ForeignKey(Agente) 
 	nombre 		= models.CharField(max_length=35)
 	direccion	= models.CharField(max_length=60, blank=True)

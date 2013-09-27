@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     url(r'^agentes/add$', 'rserver.views.agenteadd', name='agenteadd'),
     url(r'^puntos$', 'rserver.views.puntos', name='puntos'),
     url(r'^puntos/add$', 'rserver.views.puntoadd', name='puntoadd'),
+    url(r'^puntos/mapa/(\d+)$', 'rserver.views.mapa', name='mapa'),
     # url(r'^altapv/', include('altapv.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

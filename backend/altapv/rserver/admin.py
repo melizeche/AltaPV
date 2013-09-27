@@ -8,7 +8,7 @@ class PuntoAdmin(admin.ModelAdmin):
 	fieldsets = [
 		('Datos Obligatorios', {'fields': ['agente','nombre','actividad','propietario']}),
 		('Ubicación', {'fields': ['direccion','barrio','ciudad','latitud','longitud']}),
-		('Mas información', {'fields': ['telefono','ruc']})
+		('Mas información', {'fields': ['telefono','ruc','id']})
 			]
 	list_display = ('nombre','ciudad','agente','actividad')
 	list_filter = ['agente']

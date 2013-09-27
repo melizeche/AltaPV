@@ -53,8 +53,12 @@ public class MainActivity extends Activity {
 		);
 	TelephonyManager tMgr =(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 		  number = tMgr.getLine1Number();
+		  if (number.isEmpty()){
+			  System.out.println("Nulo");
+			 // number = "No disponible";
+		  }
 		  tNumero.setText(number);
-		  System.out.println(number);
+		  System.out.println("Numero:" + number + number.length()); 
 		  
 	}
 

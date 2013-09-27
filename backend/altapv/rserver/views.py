@@ -105,3 +105,8 @@ def puntoadd(request):
 
 def puntos(request):
     return HttpResponse("Hello, world. You're at the puntos.")
+
+def mapa(request, valor):
+	lat = Punto.objects.get(id=valor)
+	return render_to_response('puntos/maps.html', {'nombre': lat.nombre, 'latitud': lat.latitud, 'longitud': lat.longitud})
+	#return HttpResponse("Hello, world. You're at the puntos. " + valor)

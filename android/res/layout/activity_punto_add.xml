@@ -15,9 +15,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="19dp"
-        android:layout_marginTop="80dp"
         android:ems="10"
-        android:hint="Nombre" />
+        android:hint="Nombre del local" />
 
     <EditText
         android:id="@+id/textNumero"
@@ -25,9 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/textNombre"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="19dp"
+        android:layout_marginTop="0dp"
         android:ems="10"
-        android:hint="Número" />
+        android:hint="Telefono" />
 
     <EditText
         android:id="@+id/textDireccion"
@@ -35,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textNumero"
         android:layout_below="@+id/textNumero"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="33dp"
         android:ems="10"
         android:hint="Dirección" />
 
@@ -45,6 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textDireccion"
         android:layout_below="@+id/textDireccion"
+        android:layout_marginBottom="0dp"
+        android:layout_marginTop="0dp"
         android:ems="10"
         android:hint="Barrio" />
 

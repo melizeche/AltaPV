@@ -98,6 +98,9 @@ public class PuntoAdd extends Activity  implements LocationListener{
 		    }
 		    TelephonyManager tMgr =(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 			  agente = tMgr.getLine1Number();
+			  if (agente.isEmpty()){
+				  agente = "No disponible";
+			  }
 	}
 
 	 /* Request updates at startup */
