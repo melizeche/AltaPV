@@ -12,6 +12,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,6 +23,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -37,7 +40,6 @@ public class PuntoAdd extends Activity  implements LocationListener{
 	  
 	  private Button bEnviar;
 	  private EditText tNombre;
-	  private EditText tAgente;
 	  private EditText tNumero;
 	  private EditText tDireccion;
 	  private EditText tBarrio;
@@ -63,8 +65,12 @@ public class PuntoAdd extends Activity  implements LocationListener{
 	  
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		  this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_punto_add);
+		
+
 		 latituteField = (TextView) findViewById(R.id.TextView02);
 		    longitudeField = (TextView) findViewById(R.id.TextView04);
 		    
@@ -93,21 +99,23 @@ public class PuntoAdd extends Activity  implements LocationListener{
 		      System.out.println("Provider " + provider + " has been selected.");
 		      onLocationChanged(location);
 		    } else {
-		      latituteField.setText("Location not available");
-		      longitudeField.setText("Location not available");
+		      latituteField.setText("No Disponible");
+		      longitudeField.setText("No Disponible");
 		    }
 		    TelephonyManager tMgr =(TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
 			  agente = tMgr.getLine1Number();
 			  if (agente.isEmpty()){
-				  agente = "No disponible";
+				  agente =  tMgr.getDeviceId();
+				  
 			  }
+
 	}
 
 	 /* Request updates at startup */
 	  @Override
 	  protected void onResume() {
 	    super.onResume();
-	    locationManager.requestLocationUpdates(provider, 5000, 5, this);
+	    locationManager.requestLocationUpdates(provider, 3000, 5, this);
 	  }
 
 	  /* Remove the locationlistener updates when Activity is paused */
@@ -148,8 +156,11 @@ public class PuntoAdd extends Activity  implements LocationListener{
 		    @Override
 		    public void run() {
 		        try {
+		        	String responseBody = null;
+
 		        	HttpClient httpclient = new DefaultHttpClient();
-		    	    HttpPost httppost = new HttpPost("http://192.168.1.113:8000/puntos/add");
+		        	HttpPost httppost = new HttpPost("http://162.243.25.191:8000/puntos/add");
+		    	    //HttpPost httppost = new HttpPost("http://192.168.1.113:8000/puntos/add");
 
 		    	    try {
 		    	        // Add your data
@@ -173,8 +184,14 @@ public class PuntoAdd extends Activity  implements LocationListener{
 		    	        System.out.println("Antes");
 		    	       
 						HttpResponse response = httpclient.execute(httppost);
+						
+						if(response!=null){
+							responseBody = EntityUtils.toString(response.getEntity());
+	                    }
+						showToast(responseBody);
+
 		    	        System.out.println("Funciono");
-		    	        System.out.println(response.toString());
+		    	        
 		    	        bEnviar.setEnabled(true);
 		    	        //Toast.makeText(this, "Enviado Correctamente", Toast.LENGTH_SHORT).show();
 		    	        
@@ -190,7 +207,16 @@ public class PuntoAdd extends Activity  implements LocationListener{
 		        }
 		    }
 		});
-	 
+	public void showToast(final String toast)
+		{
+		    runOnUiThread(new Runnable() {
+		        public void run()
+		        {
+		            Toast.makeText(PuntoAdd.this, toast, Toast.LENGTH_LONG).show();
+		        }
+		    });
+		}
+		
 	  public void clickEnviar(View view) {
 		  Spinner spinner = (Spinner) findViewById(R.id.spinner1);
 		  long it = spinner.getSelectedItemId();

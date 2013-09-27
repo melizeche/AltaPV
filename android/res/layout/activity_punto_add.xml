@@ -15,6 +15,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="19dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Nombre del local" />
 
@@ -36,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textNumero"
         android:layout_below="@+id/textNumero"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="42dp"
         android:ems="10"
         android:hint="Dirección" />
 
@@ -89,7 +90,7 @@
         android:layout_below="@+id/textRuc"
         android:layout_marginLeft="14dp"
         android:text="No disponible"
-        android:textSize="20dip" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/TextView04"
@@ -99,7 +100,7 @@
         android:layout_below="@+id/TextView02"
         android:layout_marginLeft="14dp"
         android:text="No disponible"
-        android:textSize="20dip" />
+        android:textSize="16sp" />
 
     <Spinner
         android:id="@+id/spinner1"

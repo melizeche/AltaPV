@@ -30,7 +30,7 @@
         </activity>
         <activity
             android:name="com.odin.altapv.Inicio"
-            android:label="@string/title_activity_inicio" >
+            android:label="Selecciona una opcion" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

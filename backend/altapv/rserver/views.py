@@ -56,14 +56,17 @@ def agenteadd(request):
 			#print form
 			nom =  request.POST['nombre']
 			num = request.POST['numero']
-			
-			if not 'flag' in request.POST:
+			ag = Agente.objects.filter(numero=num)
+			if ag:
+				print "Ya existe el agente" + str(ag)
+			if not 'flag' in request.POST and not ag:
 				a = Agente(numero=num, nombre=nom)
 				a.save()
-			#if request.
-			return HttpResponse('valido <br>' + nom + ' = ' + num) 
+				#if request.
+				return HttpResponse('Se cargo') 
+			return HttpResponse('Ya existe un Agente con el numero ' + num) 
 		else:
-			return HttpResponse('no valido')
+			return HttpResponse('Formulario no valido: Llene todos los campos')
 	else:
 		form = AgenteForm()
 		return render_to_response('agentes/add.html', {'form': form})	
@@ -91,13 +94,14 @@ def puntoadd(request):
 				print 'siiii'
 				p = Punto(agente=ag, nombre=nom, direccion=dire, telefono=num, actividad=acti, ciudad=ciud, propietario=prop, latitud=lat, longitud=log, ruc=ru, barrio=bar)
 				p.save()
+				return HttpResponse('Se cargo el punto ' + nom)
 			#if request.
 			print "valido"
 			return HttpResponse('valido <br>' + nom + ' = ' + num) 
 			
 		else:
 			print 'no valido'
-			return HttpResponse('no valido')
+			return HttpResponse('Formulario invalido: Llene todos los campos(aunque sea con "No se")')
 
 	else:
 		form = PuntoForm()

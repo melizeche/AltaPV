@@ -12,6 +12,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
@@ -55,7 +57,8 @@ public class MainActivity extends Activity {
 		  number = tMgr.getLine1Number();
 		  if (number.isEmpty()){
 			  System.out.println("Nulo");
-			 // number = "No disponible";
+			  number=  tMgr.getDeviceId();
+			  //number = "No disponible";
 		  }
 		  tNumero.setText(number);
 		  System.out.println("Numero:" + number + number.length()); 
@@ -74,8 +77,10 @@ public class MainActivity extends Activity {
 	    @Override
 	    public void run() {
 	        try {
+	        	String responseBody = null;
 	        	HttpClient httpclient = new DefaultHttpClient();
-	    	    HttpPost httppost = new HttpPost("http://192.168.1.113:8000/agentes/add");
+	        	HttpPost httppost = new HttpPost("http://162.243.25.191:8000/agentes/add");
+	    	    //HttpPost httppost = new HttpPost("http://192.168.1.113:8000/agentes/add");
 
 	    	    try {
 	    	        // Add your data
@@ -89,8 +94,18 @@ public class MainActivity extends Activity {
 	    	        System.out.println("Antes");
 	    	       
 					HttpResponse response = httpclient.execute(httppost);
+					System.out.println("Funciono");
+					if(response!=null){
+						responseBody = EntityUtils.toString(response.getEntity());
+                    }
+					if (responseBody=="VALIDO"){
+						System.out.println("Se cargo");
+					}else{
+						System.out.println("No se cargo");
+					}
+					showToast(responseBody);
 	    	        System.out.println("Funciono");
-	    	        System.out.println(response.toString());
+	    	        System.out.println(responseBody);
 	    	        bEnviar.setEnabled(true);
 	    	        //Toast.makeText(this, "Enviado Correctamente", Toast.LENGTH_SHORT).show();
 	    	        
@@ -107,7 +122,15 @@ public class MainActivity extends Activity {
 	    }
 	});
 
-	
+	public void showToast(final String toast)
+	{
+	    runOnUiThread(new Runnable() {
+	        public void run()
+	        {
+	            Toast.makeText(MainActivity.this, toast, Toast.LENGTH_LONG).show();
+	        }
+	    });
+	}
 	
 	public void sendPost(View view) {
 		System.out.println("aaaa");
